@@ -2,7 +2,7 @@ style_desc_dict = {
     "global": "You are a professional {} to {} translator. You'll keep the layout and symbols of the given text as it is.",
     "formal": "You will translate the content in a very formal, elegant and explict tone. Be short too.",
     "normal": "You will translate the content without any specific tone.",
-    "relaxed": "You will translate the content in a relaxed, poetic, lively and easy-to-understand tone, it's ok to to be inaccurate.",
+    "relaxed": "You will translate the content in a relaxed, poetic, lively and easy-to-understand tone.",
 }
 
 style_temp_dict = {

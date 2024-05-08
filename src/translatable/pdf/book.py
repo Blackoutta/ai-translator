@@ -23,7 +23,7 @@ class Book:
     def to_pdf(self) -> bytes:
         # Register Chinese font
         print(os.getcwd())
-        font_path = "./static/simsun.ttc"  # 请将此路径替换为您的字体文件路径
+        font_path = "./src/static/simsun.ttc"  # 请将此路径替换为您的字体文件路径
         pdfmetrics.registerFont(TTFont("SimSun", font_path))
 
         # Create a new ParagraphStyle with the SimSun font

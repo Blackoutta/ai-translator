@@ -1,8 +1,8 @@
 import os
 import sys
+from io import BytesIO
 
 from flask import Flask, request, render_template, send_file
-from io import BytesIO
 
 from translator.meta import TransRequest, TransType, Style
 from translator.translator import TranslatorV1
@@ -75,7 +75,7 @@ def translate_text():
     translator = TranslatorV1()
     resp, err = translator.translate(req)
     if err:
-        return render_template('trans_text.html',err=err)
+        return render_template('trans_text.html', err=err)
 
     translated = resp.text
 
