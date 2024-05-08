@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI翻译助手</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<h1>AI翻译助手</h1>
+<form action="/translate_doc" method="post" enctype="multipart/form-data">
+    <label for="src">源语言:</label>
+    <select id="src" name="src" required>
+        <option value="English">英语</option>
+        <option value="Chinese">中文</option>
+        <option value="Japanese">日语</option>
+    </select><br>
+
+    <label for="target">目标语言:</label>
+    <select id="target" name="target" required>
+        <option value="English">英语</option>
+        <option value="Chinese" selected>中文</option>
+        <option value="Japanese">日语</option>
+    </select><br>
+
+    <label for="style">风格:</label>
+    <select id="style" name="style" required>
+        <option value="formal">优雅、高大上</option>
+        <option value="normal">普通</option>
+        <option value="relaxed">轻松、说人话</option>
+    </select><br>
+
+    <label for="model">大模型</label>
+    <select id="model" name="model" required>
+        <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+    </select><br>
+
+    <label>请上传要翻译得文件(支持.txt .pdf):</label>
+    <input type="file" name="file"><br>
+
+    {% if translated %}
+    <h1>翻译结果:</h1>
+    <div>
+        <p><strong>原文:</strong> {{ original }}</p>
+        <p><strong>译文:</strong> {{ translated }}</p>
+    </div>
+    {% endif %}
+
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
