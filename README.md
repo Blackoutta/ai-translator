@@ -10,20 +10,23 @@
 ## 功能预览
 
 ### 支持即时翻译和文档翻译
+
 ![switch](switch.gif)
 
 ### 即时翻译
 
-![pv1](pv_1.gif)
+![gif](realtime.gif)
 
 ### 文档翻译
 
-![img.png](pv2.png)
+![img.png](doc_upload.png)
 
 #### 翻译前
+
 ![img.png](doc_before.png)
 
 #### 翻译后
+
 ![img.png](doc_after.png)
 
 ## 快速开始
@@ -47,6 +50,7 @@ pip install -r requirements.txt
 ```
 
 设置API KEY和BASE URL
+
 ```
 export OPENAI_API_KEY=your_api_key
 export OPENAI_BASE_URL=your_base_url
@@ -65,5 +69,7 @@ http://127.0.0.1:5000/
 ```
 
 ## TODO
+
 - PDF布局及样式还原
 - 优化前端用户体验
+- 优化翻译准确度
