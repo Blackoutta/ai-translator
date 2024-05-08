@@ -13,6 +13,17 @@
 
 ![switch](switch.gif)
 
+### 选择你的翻译风格!
+选择不同的风格可以得到不同风格的译文，例如：
+
+原文: The intricate dance of the stars shimmered against the backdrop of the velvety night sky, casting a spell of wonder and awe upon the beholder.
+
+优雅文豪: 星星的错综舞蹈，在天幕的背景下闪烁，向观赏者施加着惊奇和敬畏的魔力。
+
+普通: 星星的复杂舞蹈在天鹅绒般的夜空背景下闪烁，给观者带来了惊叹和敬畏的魔力。
+
+轻松浪漫: 星星们纷繁复杂的舞蹈在天幕之下闪烁不已，给观赏者带来一种奇异而敬畏的魔力。
+
 ### 即时翻译
 
 ![gif](realtime.gif)
@@ -73,3 +84,8 @@ http://127.0.0.1:5000/
 - PDF布局及样式还原
 - 优化前端用户体验
 - 优化翻译准确度
+
+
+
+
+

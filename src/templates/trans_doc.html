@@ -14,39 +14,27 @@
     </div>
     <label for="src">源语言:</label>
     <select id="src" name="src" required>
-        <option value="English" selected>英语</option>
-        <option value="Spanish">西班牙语</option>
-        <option value="French">法语</option>
-        <option value="Mandarin Chinese">普通话</option>
-        <option value="Hindi">印地语</option>
-        <option value="Arabic">阿拉伯语</option>
-        <option value="Bengali">孟加拉语</option>
-        <option value="Russian">俄语</option>
-        <option value="Portuguese">葡萄牙语</option>
-        <option value="Urdu">乌尔都语</option>
-        <option value="Japanese">日语</option>
+        <option value="English" {% if src == 'English' %}selected{% endif %}>英语</option>
+        <option value="Spanish" {% if src == 'Spanish' %}selected{% endif %}>西班牙语</option>
+        <option value="French" {% if src == 'French' %}selected{% endif %}>法语</option>
+        <option value="Chinese" {% if src == 'Chinese' %}selected{% endif %}>中文</option>
+        <option value="Japanese" {% if src == 'Japanese' %}selected{% endif %}>日语</option>
     </select><br>
 
     <label for="target">目标语言:</label>
     <select id="target" name="target" required>
-        <option value="English">英语</option>
-        <option value="Spanish">西班牙语</option>
-        <option value="French">法语</option>
-        <option value="Mandarin Chinese" selected>中文</option>
-        <option value="Hindi">印地语</option>
-        <option value="Arabic">阿拉伯语</option>
-        <option value="Bengali">孟加拉语</option>
-        <option value="Russian">俄语</option>
-        <option value="Portuguese">葡萄牙语</option>
-        <option value="Urdu">乌尔都语</option>
-        <option value="Japanese">日语</option>
+        <option value="English" {% if target == 'English' %}selected{% endif %}>英语</option>
+        <option value="Spanish" {% if target == 'Spanish' %}selected{% endif %}>西班牙语</option>
+        <option value="French" {% if target == 'French' %}selected{% endif %}>法语</option>
+        <option value="Chinese" {% if target == 'Chinese' %}selected{% endif %}>中文</option>
+        <option value="Japanese" {% if target == 'Japanese' %}selected{% endif %}>日语</option>
     </select><br>
 
     <label for="style">风格:</label>
     <select id="style" name="style" required>
-        <option value="formal">优雅、高大上</option>
-        <option value="normal">普通</option>
-        <option value="relaxed">轻松、说人话</option>
+        <option value="formal" {% if style == 'formal' %}selected{% endif %}>优雅文豪</option>
+        <option value="normal" {% if style == 'normal' %}selected{% endif %}>普通</option>
+        <option value="relaxed" {% if style == 'relaxed' %}selected{% endif %}>轻松浪漫</option>
     </select><br>
 
     <label for="model">大模型</label>
@@ -58,18 +46,18 @@
     <input type="file" name="file" required><br>
 
     {% if err %}
-    <h2 class="error">发生错误:</h2>
-    <div class="error">
-        <p><strong>错误详情:</strong> {{ err }}</p>
-    </div>
+        <h2 class="error">发生错误:</h2>
+        <div class="error">
+            <p><strong>错误详情:</strong> {{ err }}</p>
+        </div>
     {% endif %}
 
     {% if translated %}
-    <h2 class="result">翻译结果:</h2>
-    <div>
-        <p><strong>原文:</strong> {{ original }}</p>
-        <p><strong>译文:</strong> {{ translated }}</p>
-    </div>
+        <h2 class="result">翻译结果:</h2>
+        <div>
+            <p><strong>原文:</strong> {{ original }}</p>
+            <p><strong>译文:</strong> {{ translated }}</p>
+        </div>
     {% endif %}
 
     <button class="doc" type="submit">Submit</button>

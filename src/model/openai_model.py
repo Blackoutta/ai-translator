@@ -38,6 +38,8 @@ class OpenAIModel(Model):
             {"role": "user",
              "content": "translate the following content from {} to {}: {}".format(self.src, self.target, content)}
         )
+        for msg in messages:
+            print(msg)
 
         try:
             response = self.client.chat.completions.create(

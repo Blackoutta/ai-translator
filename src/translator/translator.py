@@ -23,8 +23,10 @@ def _parse_examples(request: TransRequest) -> list[str]:
         return request.custom_style.examples
 
     examples = ["Let me give you some translation example(s).",
-                "Suppose We are translating this English sentence to Chinese sentence: " + example_text,
-                "Your translated text should look like this: " + example_dict[request.style.value]
+                "Suppose We are translating this English sentence to Chinese: " + example_text,
+                "by using the '{}' style, your translation may look like this: {}".format(request.style.value,
+                                                                                          example_dict[
+                                                                                              request.style.value])
                 ]
     return examples
 

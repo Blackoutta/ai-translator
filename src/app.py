@@ -12,17 +12,17 @@ app = Flask(__name__)
 
 @app.route('/')
 def index_page():
-    return render_template('trans_text.html')
+    return render_template('trans_text.html', style=None, src="English", target="Chinese")
 
 
 @app.route('/doc')
 def doc_page():
-    return render_template('trans_doc.html')
+    return render_template('trans_doc.html', style=None, src="English", target="Chinese")
 
 
 @app.route('/text')
 def text_page():
-    return render_template('trans_text.html')
+    return render_template('trans_text.html', style=None, src="English", target="Chinese")
 
 
 @app.route('/translate_doc', methods=['POST'])
@@ -63,10 +63,12 @@ def translate_text():
     print(form)
     original = form.get("text_content")
     style = Style(form.get("style"))
+    src = form.get("src")
+    target = form.get("target")
 
     req = TransRequest(
-        src=form.get("src"),
-        target=form.get("target"),
+        src=src,
+        target=target,
         trans_type=TransType.TEXT,
         text_content=original,
         style=style  # 可选风格: FORMAL, NORMAL, RELAXED
@@ -82,7 +84,9 @@ def translate_text():
     return render_template('trans_text.html',
                            translated=translated,
                            original=original,
-                           style=style
+                           style=style.value,
+                           src=src,
+                           target=target
                            )
 
 
