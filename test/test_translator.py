@@ -12,5 +12,6 @@ req = TransRequest(
     style=Style.FORMAL  # 可选风格: FORMAL, NORMAL, RELAXED
 )
 
-resp = translator.translate(req)
+resp, err = translator.translate(req)
+print(err)
 print(resp.text)
