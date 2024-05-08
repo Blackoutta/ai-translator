@@ -18,7 +18,7 @@
 
 ### 文档翻译
 
-![img.png](pv_2.png)
+![img.png](pv2.png)
 
 #### 翻译前
 ![img.png](doc_before.png)
