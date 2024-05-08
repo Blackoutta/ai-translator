@@ -9,6 +9,9 @@
 
 ## 功能预览
 
+### 支持即时翻译和文档翻译
+![switch](switch.gif)
+
 ### 即时翻译
 
 ![pv1](pv_1.gif)
@@ -45,9 +48,6 @@ pip install -r requirements.txt
 
 ```
 python ./src/app.py
- * Serving Flask app 'app'
- * Debug mode: on
- * Running on http://127.0.0.1:5000
 ```
 
 使用浏览器访问以下url
