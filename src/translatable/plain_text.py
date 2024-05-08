@@ -1,3 +1,5 @@
+from typing import Optional
+
 from model.meta import Model
 from translatable.meta import Translatable
 
@@ -8,8 +10,12 @@ class PlainTextTranslatable(Translatable):
         self.original = text
         self.translated = None
 
-    def translate(self):
-        self.translated = self.model.translate(self.original)
+    def translate(self) -> Optional[str]:
+        translated, err = self.model.translate(self.original)
+        if err is not None:
+            return err
+        self.translated = translated
+        return None
 
     def get_bytes(self) -> bytes:
         return self.translated.encode('utf-8')

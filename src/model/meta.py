@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Tuple, Optional
 
 
 class Model(ABC):
@@ -9,5 +10,5 @@ class Model(ABC):
         self.examples = examples
 
     @abstractmethod
-    def translate(self, content: str) -> str:
+    def translate(self, content: str) -> Tuple[str, Optional[str]]:
         pass

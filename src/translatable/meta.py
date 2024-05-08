@@ -1,4 +1,6 @@
 from abc import ABC, abstractmethod
+from typing import Tuple, Optional
+
 from model.meta import Model
 
 
@@ -7,7 +9,7 @@ class Translatable(ABC):
         self.model = model
 
     @abstractmethod
-    def translate(self):
+    def translate(self) -> Optional[str]:
         pass
 
     @abstractmethod

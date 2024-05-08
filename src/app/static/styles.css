@@ -50,7 +50,9 @@ select {
 }
 
 button {
-    padding: 10px 20px;
+    display: block;
+    padding: 25px 100px;
+    margin-top: 20px;
     background-color: #4CAF50;
     color: #fff;
     border: none;
@@ -60,4 +62,41 @@ button {
 
 button:hover {
     background-color: #45a049;
+}
+
+.switcher {
+    background-color: #4CAF50; /* 设置背景颜色 */
+    color: white; /* 设置字体颜色 */
+    padding: 10px 20px; /* 设置内边距 */
+    border-radius: 5px; /* 设置边框圆角 */
+    display: flex; /* 设置为弹性容器 */
+    justify-content: center; /* 在主轴上居中 */
+    align-items: center; /* 在交叉轴上居中 */
+    text-decoration: none; /* 去除下划线 */
+    margin-bottom: 20px;
+}
+
+.switcher:hover {
+    background-color: #45a049; /* 设置悬停时的背景颜色 */
+}
+
+.doc {
+    background-color: #1e8ed9; /* 设置背景颜色 */
+}
+
+.doc:hover {
+    background-color: #1e72d9; /* 设置背景颜色 */
+}
+
+.text {
+    background-color: #4CAF50; /* 设置背景颜色 */
+}
+
+.error {
+    text-align: left;
+    color: #ed3232;
+}
+
+.result {
+    text-align: left;
 }

@@ -1,3 +1,7 @@
+from typing import Tuple, Optional
+
+import openai
+
 from model.meta import Model
 from openai import OpenAI
 
@@ -18,7 +22,7 @@ class OpenAIModel(Model):
         self.model = model
         self.temperature = temperature
 
-    def translate(self, content: str) -> str:
+    def translate(self, content: str) -> Tuple[str, Optional[str]]:
         messages = []
         for desc in self.style_desc:
             messages.append(
@@ -31,13 +35,28 @@ class OpenAIModel(Model):
             )
 
         messages.append(
-            {"role": "user", "content": "translate the following content from {} to {}: {}".format(self.src, self.target, content)}
+            {"role": "user",
+             "content": "translate the following content from {} to {}: {}".format(self.src, self.target, content)}
         )
 
-        response = self.client.chat.completions.create(
-            model=self.model,
-            messages=messages,
-            temperature=self.temperature,
-        )
-        translation = response.choices[0].message.content.strip()
-        return translation
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=messages,
+                temperature=self.temperature,
+            )
+
+            translation = response.choices[0].message.content.strip()
+            return translation, None
+        except openai.RateLimitError as e:
+            print(e)
+            return "", "API用量被限制。"
+        except openai.APIConnectionError as e:
+            print(e)
+            return "", "发生API连接问题, 请重试。"
+        except openai.APIStatusError as e:
+            print(e)
+            return "", "API调用返回错误: {}".format(e.message)
+        except Exception as e:
+            print(e)
+            return "", "发生未知错误"

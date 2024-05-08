@@ -1,7 +1,8 @@
 import os
 
-from exception.types import EnumNotSupportedException
+from exception.meta import EnumNotSupportedException
 from model.openai_model import *
+from translatable.pdf.pdf import PDFTranslatable
 from translatable.plain_text import PlainTextTranslatable
 from translatable.meta import Translatable
 from translator.examples import *
@@ -34,6 +35,8 @@ def _parse_translatable(request: TransRequest, model: Model) -> Translatable:
     if request.trans_type == TransType.DOC:
         if request.file_type == 'text/plain':
             return PlainTextTranslatable(model, request.doc_content.decode('utf-8'))
+        if request.file_type == 'application/pdf':
+            return PDFTranslatable(model, request.doc_content)
     raise EnumNotSupportedException("trans_type: {}, content_type: {}".format(request.trans_type, request.file_type))
 
 
@@ -45,7 +48,7 @@ class TranslatorV1(Translator):
     def __init__(self):
         super().__init__()
 
-    def translate(self, request: TransRequest) -> TransResponse:
+    def translate(self, request: TransRequest) -> Tuple[Optional[TransResponse], Optional[str]]:
         style_desc = _parse_style_desc(request)
         examples = _parse_examples(request)
         temperature = _parse_temperature(request)
@@ -63,6 +66,9 @@ class TranslatorV1(Translator):
 
         translatable = _parse_translatable(request, model)
 
-        translatable.translate()
+        err = translatable.translate()
+        if err is not None:
+            return None, err
+
         resp = TransResponse(translatable.get_text(), translatable.get_bytes())
-        return resp
+        return resp, None

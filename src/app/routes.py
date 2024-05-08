@@ -1,3 +1,6 @@
+import os
+import sys
+
 from flask import Flask, request, render_template, send_file
 from io import BytesIO
 
@@ -8,8 +11,18 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def main_page():
+def index_page():
+    return render_template('trans_text.html')
+
+
+@app.route('/doc')
+def doc_page():
     return render_template('trans_doc.html')
+
+
+@app.route('/text')
+def text_page():
+    return render_template('trans_text.html')
 
 
 @app.route('/translate_doc', methods=['POST'])
@@ -34,7 +47,10 @@ def translate_doc():
     )
 
     translator = TranslatorV1()
-    resp = translator.translate(req)
+    resp, err = translator.translate(req)
+    if err:
+        return render_template('trans_doc.html', err=err)
+
     file_object = BytesIO(resp.bs)
     return send_file(file_object, as_attachment=True, mimetype=file_type, download_name='translated_' + file_name)
 
@@ -57,7 +73,10 @@ def translate_text():
     )
 
     translator = TranslatorV1()
-    resp = translator.translate(req)
+    resp, err = translator.translate(req)
+    if err:
+        return render_template('trans_text.html',err=err)
+
     translated = resp.text
 
     return render_template('trans_text.html',
@@ -68,4 +87,11 @@ def translate_text():
 
 
 if __name__ == '__main__':
+    if len(os.getenv('OPENAI_API_KEY')) == 0:
+        print("请正确设置环境变量: OPENAI_API_KEY")
+        sys.exit(2)
+    if len(os.getenv("OPENAI_BASE_URL")) == 0:
+        print("请正确设置环境变量: OPENAI_BASE_URL")
+        sys.exit(2)
+
     app.run(debug=True)

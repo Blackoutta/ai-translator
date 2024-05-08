@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI翻译助手</title>
+    <title>AI文档翻译助手</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-<h1>AI翻译助手</h1>
+<h1>AI文档翻译助手</h1>
 <form action="/translate_doc" method="post" enctype="multipart/form-data">
+    <div class="switcher doc">
+        想通过直接输入来翻译？试试<a href="/text">AI即时翻译助手</a>
+    </div>
     <label for="src">源语言:</label>
     <select id="src" name="src" required>
         <option value="English">英语</option>
@@ -35,18 +38,25 @@
         <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
     </select><br>
 
-    <label>请上传要翻译得文件(支持.txt .pdf):</label>
-    <input type="file" name="file"><br>
+    <label>请上传要翻译的文件(支持.txt .pdf):</label>
+    <input type="file" name="file" required><br>
+
+    {% if err %}
+    <h2 class="error">发生错误:</h2>
+    <div class="error">
+        <p><strong>错误详情:</strong> {{ err }}</p>
+    </div>
+    {% endif %}
 
     {% if translated %}
-    <h1>翻译结果:</h1>
+    <h2 class="result">翻译结果:</h2>
     <div>
         <p><strong>原文:</strong> {{ original }}</p>
         <p><strong>译文:</strong> {{ translated }}</p>
     </div>
     {% endif %}
 
-    <button type="submit">Submit</button>
+    <button class="doc" type="submit">Submit</button>
 </form>
 </body>
 </html>

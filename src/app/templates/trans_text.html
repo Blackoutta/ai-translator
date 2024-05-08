@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI翻译助手</title>
+    <title>AI即时翻译助手</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-<h1>AI翻译助手</h1>
+<h1>AI即时翻译助手</h1>
 <form action="/translate_text" method="post" enctype="multipart/form-data">
+    <div class="switcher">
+        想直接翻译整个文档？试试<a href="/doc">AI文档翻译助手</a>
+    </div>
+
     <label for="src">源语言:</label>
     <select id="src" name="src" required>
         <option value="English">英语</option>
@@ -36,13 +40,18 @@
     </select><br>
 
     <label for="text_content">请输入要翻译的内容:</label>
-    <!--    <textarea id="text_content" name="text_content" rows="4" cols="50"></textarea><br>-->
     <textarea id="text_content" name="text_content" rows="4"
-              cols="50">{% if original %}{{ original }}{% endif %}</textarea><br>
+              cols="50" required>{% if original %}{{ original }}{% endif %}</textarea><br>
 
+    {% if err %}
+    <h2 class="error">发生错误:</h2>
+    <div class="error">
+        <p><strong>错误详情:</strong> {{ err }}</p>
+    </div>
+    {% endif %}
 
     {% if translated %}
-    <h1>翻译结果:</h1>
+    <h2 class="result">翻译结果:</h2>
     <div>
         <p><strong>原文:</strong> {{ original }}</p>
         <p><strong>译文:</strong> {{ translated }}</p>
