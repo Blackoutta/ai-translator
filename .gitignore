@@ -1,2 +1,30 @@
 .idea
 .DS_Store
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local development configuration
+.env
+
+# IDE/Editor specific files
+.vscode/
+*.swp
+*.swo
+*.pyc
+*~
+
+# Compiled python packages
+*.egg-info/
+dist/
+build/
+
+# Database
+db.sqlite3
+
+# Compiled Web assets
+node_modules/
+__pycache__
+*.pyc
+*.pyo
