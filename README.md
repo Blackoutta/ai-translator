@@ -19,9 +19,11 @@
 ### 文档翻译
 
 ![img.png](pv_2.png)
-翻译前
+
+#### 翻译前
 ![img.png](doc_before.png)
-翻译后
+
+#### 翻译后
 ![img.png](doc_after.png)
 
 ## 快速开始
@@ -42,6 +44,12 @@ cd ai-translator
 
 ```
 pip install -r requirements.txt
+```
+
+设置API KEY和BASE URL
+```
+export OPENAI_API_KEY=your_api_key
+export OPENAI_BASE_URL=your_base_url
 ```
 
 用python运行应用:
